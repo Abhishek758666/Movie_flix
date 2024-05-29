@@ -48,6 +48,9 @@ const Topnav = () => {
         {searches &&
           searches.map((s, i) => (
             <Link
+              to={`/${s.media_type == "tv" ? "tv shows" : "movies"}/details/${
+                s.id
+              }`}
               key={i}
               className="w-full p-3 scroll-px-72 flex gap-5 justify-start items-center border-b-[1px] bg-[#1b1b1b] hover:bg-zinc-800 duration-200"
             >
