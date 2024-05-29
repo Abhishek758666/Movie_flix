@@ -59,7 +59,8 @@ const TvShow = () => {
         loader={<h1>Loading...</h1>}
       >
         <div className="cards flex justify-center gap-10 flex-wrap py-10">
-          {TvShow && TvShow.map((c, i) => <Cards data={c} key={i} />)}
+          {TvShow &&
+            TvShow.map((c, i) => <Cards data={c} key={i} title={"tv shows"} />)}
         </div>
       </InfiniteScroll>
     </div>

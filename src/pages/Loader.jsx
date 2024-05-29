@@ -1,12 +1,12 @@
 import React from "react";
-import { hatch } from "ldrs";
+import { waveform } from "ldrs";
 
 const Loader = () => {
-  hatch.register();
+  waveform.register();
 
   return (
     <div className="w-full h-screen flex items-center justify-center">
-      <l-hatch size="150" stroke="4" speed="3.5" color="#6556cd"></l-hatch>
+      <l-waveform size="35" stroke="3.5" speed="1" color="#6556cd"></l-waveform>
     </div>
   );
 };

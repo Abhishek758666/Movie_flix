@@ -7,13 +7,16 @@ const Horizontalcards = ({ data }) => {
       <div className="w-full flex overflow-x-auto overflow-y-hidden">
         {data.map((t, i) => {
           return (
-            <div
+            <Link
+              to={`/${
+                t.media_type === "movie" ? "movies" : "tv shows"
+              }/details/${t.id}`}
               key={i}
               className="block w-[20%] min-h-[15rem] flex-none bg-zinc-700 mr-5 p-4"
             >
               <img
                 src={`https://image.tmdb.org/t/p/original/${
-                  t.poster_path || t.backdrop.path
+                  t.poster_path || t.backdrop_path
                 }`}
                 alt=""
                 className="h-[10rem] w-full object-cover object-top"
@@ -23,9 +26,9 @@ const Horizontalcards = ({ data }) => {
               </h1>
               <p className="leading-none tracking-normal">
                 {t.overview.slice(0, 100)}......
-                <Link className="text-blue-300 font-bold">more</Link>
+                <span className="text-blue-300 font-bold">more</span>
               </p>
-            </div>
+            </Link>
           );
         })}
       </div>

@@ -67,7 +67,14 @@ const Trending = () => {
         loader={<h1>Loading...</h1>}
       >
         <div className="cards flex justify-center gap-10 flex-wrap py-10">
-          {trending && trending.map((c, i) => <Cards data={c} key={i} />)}
+          {trending &&
+            trending.map((c, i) => (
+              <Cards
+                data={c}
+                title={category == "tv" ? "tv shows" : "movies"}
+                key={i}
+              />
+            ))}
         </div>
       </InfiniteScroll>
     </div>

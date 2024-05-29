@@ -13,7 +13,7 @@ const Dropdown = ({ title, options, func }) => {
           className="appearance-none outline-0 bg-zinc-700 flex-1 px-10 py-2 uppercase rounded-lg"
         >
           <option value={0} disabled>
-            {title}
+            {title} 🢓
           </option>
           {options.map((o, i) => {
             return (

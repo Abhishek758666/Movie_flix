@@ -44,7 +44,7 @@ const Topnav = () => {
         <RxCross2 className="text-3xl" onClick={toogleHandler} />
       )}
 
-      <div className="absolute w-[50%] max-h-[70vh] overflow-auto  top-[100%] left-1/2 -translate-x-1/2  rounded-lg">
+      <div className="absolute w-[50%] max-h-[70vh] overflow-auto  z-50 top-[100%] left-1/2 -translate-x-1/2  rounded-lg">
         {searches &&
           searches.map((s, i) => (
             <Link

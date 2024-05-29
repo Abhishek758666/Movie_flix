@@ -1,8 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Cards = ({ data }) => {
+const Cards = ({ data, title }) => {
+  console.log(title);
   return (
-    <div className="relative w-[20%] min-h-[24rem] hover:bg-zinc-700 bg-zinc-800 duration-300 rounded-lg p-1">
+    <Link
+      to={`/${data.media_type || title}/details/${data.id}`}
+      className="relative w-[20%] min-h-[24rem] hover:bg-zinc-700 bg-zinc-800 duration-300 rounded-lg p-1"
+    >
       <img
         src={`https://image.tmdb.org/t/p/original/${
           data.poster_path || data.backdrop_path || data.profile_path
@@ -18,7 +23,7 @@ const Cards = ({ data }) => {
           {data.vote_average.toFixed()}/10
         </span>
       )}
-    </div>
+    </Link>
   );
 };
 

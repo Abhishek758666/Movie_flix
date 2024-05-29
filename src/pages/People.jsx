@@ -51,7 +51,8 @@ const People = () => {
         loader={<h1>Loading...</h1>}
       >
         <div className="cards flex justify-center gap-10 flex-wrap py-10">
-          {person && person.map((c, i) => <Cards data={c} key={i} />)}
+          {person &&
+            person.map((c, i) => <Cards data={c} key={i} title={"people"} />)}
         </div>
       </InfiniteScroll>
     </div>

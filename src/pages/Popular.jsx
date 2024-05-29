@@ -59,7 +59,14 @@ const Popular = () => {
         loader={<h1>Loading...</h1>}
       >
         <div className="cards flex justify-center gap-10 flex-wrap py-10">
-          {Popular && Popular.map((c, i) => <Cards data={c} key={i} />)}
+          {Popular &&
+            Popular.map((c, i) => (
+              <Cards
+                data={c}
+                key={i}
+                title={category == "movie" ? "movies" : "tv shows"}
+              />
+            ))}
         </div>
       </InfiniteScroll>
     </div>

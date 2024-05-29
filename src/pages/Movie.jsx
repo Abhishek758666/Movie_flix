@@ -57,9 +57,11 @@ const Movie = () => {
         next={getMovie}
         dataLength={Movie.length}
         loader={<h1>Loading...</h1>}
+        s
       >
         <div className="cards flex justify-center gap-10 flex-wrap py-10">
-          {Movie && Movie.map((c, i) => <Cards data={c} key={i} />)}
+          {Movie &&
+            Movie.map((c, i) => <Cards data={c} key={i} title={"movies"} />)}
         </div>
       </InfiniteScroll>
     </div>

@@ -21,7 +21,14 @@ const Headers = ({ data }) => {
         </h1>
         <p className="w-1/2 leading-none tracking-normal">
           {data.overview.slice(0, 200)}......
-          <Link className="text-blue-300 font-bold">more</Link>
+          <Link
+            to={`/${
+              data.media_type == "movie" ? "movies" : "tv shows"
+            }/details/${data.id}`}
+            className="text-blue-300 font-bold"
+          >
+            more
+          </Link>
         </p>
         <p className="flex items-center mt-5">
           <MdDateRange className="text-yellow-400" />
