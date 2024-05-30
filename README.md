@@ -1,8 +1,27 @@
-# React + Vite
+# Movie Flix
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Movie Flix is a web application that provides information about movies using the TMDB API. Built with Vite, React, Tailwind CSS, and Redux Toolkit, the app offers a sleek  user experience.(not responsive yet)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- Browse popular movies
+- Search for movies by title
+- View detailed information about each movie
+- Responsive design for mobile and desktop
+- State management using Redux Toolkit
+
+## Live Demo
+
+Check out the live demo [here](https://movie-flix-beta.vercel.app/).
+
+
+## Technologies Used
+
+- **Vite**: A fast build tool for modern web projects
+- **React**: A JavaScript library for building user interfaces
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development
+- **Redux Toolkit**: A predictable state container for JavaScript apps
+- **TMDB API**: A popular API for fetching movie data
+
+
