@@ -27,6 +27,8 @@ const TvShow = () => {
     }
   };
 
+  console.log(TvShow);
+
   useEffect(() => {
     setTvShow([]);
     setPage(1);

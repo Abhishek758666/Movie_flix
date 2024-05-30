@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncLoadMovie } from "../store/actions/movieActions";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import { removeDetail } from "../store/reducers/movieSlice";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { RiExternalLinkFill } from "react-icons/ri";
 import { LiaImdb } from "react-icons/lia";
 import Loader from "../pages/Loader";
 import { SiWikidata } from "react-icons/si";
+import { FaPlay } from "react-icons/fa";
+import Horizontalcards from "../components/Horizontalcards";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -22,21 +24,21 @@ const MovieDetails = () => {
     return () => {
       dispatch(removeDetail());
     };
-  }, []);
+  }, [id]);
 
   return info ? (
     <div
-      className="w-screen min-h-screen p-6 overflow-x-hidden"
+      className="w-full min-h-screen p-6 relative overflow-x-hidden"
       style={{
         background: info.detail.backdrop_path
-          ? `linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5),rgba(0,0,0,0.7)),url(https://image.tmdb.org/t/p/original/${info.detail.backdrop_path})`
+          ? `linear-gradient(rgba(0,0,0,0.2),rgba(123,104,238,0.3),rgba(123,104,238,0.4)),url(https://image.tmdb.org/t/p/original/${info.detail.backdrop_path})`
           : "linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5),rgba(0,0,0,0.7))",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
       <nav className="w-full flex gap-10 text-2xl items-center">
-        <Link onClick={() => navigate(-1)}>
+        <Link to={`/movies`}>
           <IoArrowBackOutline className="hover:text-[#6556cd] duration-300" />
         </Link>
         <a href={`${info.detail.homepage}`} target="_blank">
@@ -56,7 +58,7 @@ const MovieDetails = () => {
         </a>
       </nav>
 
-      <div className="w-full flex gap-10 text-2xl items-center p-5">
+      <div className="w-full flex gap-10 text-2xl p-5">
         <div>
           <img
             src={`https://image.tmdb.org/t/p/original/${
@@ -67,33 +69,107 @@ const MovieDetails = () => {
             className="h-[20rem]"
           />
         </div>
+        <div>
+          <h1 className="text-5xl flex gap-5 font-black">
+            {info.detail.title ||
+              info.detail.name ||
+              info.detail.original_name ||
+              info.detail.original_title}
+            {info.detail.vote_average && (
+              <span className="font-black text-lg top-[0] right-0 h-[8vh] w-[8vh] rounded-full bg-yellow-600 flex justify-center items-center">
+                {info.detail.vote_average.toFixed()}/10
+              </span>
+            )}
+          </h1>
+          <div className="my-5 flex items-center gap-5">
+            <span className="text-sm">{info.detail.release_date}</span>
+            <h1 className="text-sm">
+              -{info.detail.genres.map((v, i) => v.name).join(",")}
+            </h1>
+          </div>
+          <h3 className="italic text-lg">{info.detail.tagline}</h3>
+
+          <h1 className="font-black">Overview</h1>
+          <p className="text-lg my-5 w-[60vw]">{info.detail.overview}</p>
+          <Link
+            to={`./trailer`}
+            className="text-lg w-[10rem] px-5 py-2 flex justify-start gap-2 items-center bg-[#6556cd] rounded-xl"
+          >
+            <FaPlay />
+            Play trailer
+          </Link>
+        </div>
+        <br />
       </div>
 
       <div>
-        <div className="flex gap-2 overflow-hidden">
-          {info.watchProviders.flatrate &&
-            info.watchProviders.flatrate.map((value, i) => {
-              return (
-                <img
-                  className="h-[5vh] w-[5vh] object-cover rounded-md"
-                  src={`https://image.tmdb.org/t/p/original/${value.logo_path}`}
-                  key={i}
-                />
-              );
-            })}
+        <div className="flex flex-col px-10 gap-2 overflow-hidden">
+          {info.watchProviders?.flatrate && (
+            <div className="flex items-center">
+              <h1 className="w-[10rem]">Available on flaterate</h1>:
+              {info.watchProviders.flatrate.map((value, i) => {
+                return (
+                  <img
+                    title={value.provider_name}
+                    className="h-[5vh] w-[5vh] object-cover rounded-md ml-5"
+                    src={`https://image.tmdb.org/t/p/original/${value.logo_path}`}
+                    key={i}
+                  />
+                );
+              })}
+            </div>
+          )}
+          {info.watchProviders?.rent && (
+            <div className="flex items-center">
+              <h1 className="w-[10rem]">Available on rent</h1>:
+              {info.watchProviders.rent.map((value, i) => {
+                return (
+                  <img
+                    title={value.provider_name}
+                    className="h-[5vh] w-[5vh] object-cover rounded-md ml-5"
+                    src={`https://image.tmdb.org/t/p/original/${value.logo_path}`}
+                    key={i}
+                  />
+                );
+              })}
+            </div>
+          )}
 
-          {info.watchProviders.rent &&
-            info.watchProviders.rent.map((value, i) => {
-              return (
-                <img
-                  className="h-[5vh] w-[5vh] object-cover rounded-md"
-                  src={`https://image.tmdb.org/t/p/original/${value.logo_path}`}
-                  key={i}
-                />
-              );
-            })}
+          {info.watchProviders?.buy && (
+            <div className="flex items-center">
+              <h1 className="w-[10rem]">Available to buy</h1>:
+              {info.watchProviders.buy.map((value, i) => {
+                return (
+                  <img
+                    title={value.provider_name}
+                    className="h-[5vh] w-[5vh] object-cover rounded-md ml-5"
+                    src={`https://image.tmdb.org/t/p/original/${value.logo_path}`}
+                    key={i}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
+
+      {info.recommendations && info.similar && (
+        <div className="p-10">
+          <hr />
+          <h1 className="text-3xl capitalize font-black py-5">
+            recommendations & similar
+          </h1>
+          <Horizontalcards
+            data={
+              info.recommendations.length > 0
+                ? info.recommendations
+                : info.similar
+            }
+          />
+        </div>
+      )}
+
+      <Outlet />
     </div>
   ) : (
     <Loader />

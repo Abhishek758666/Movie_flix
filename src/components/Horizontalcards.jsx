@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Horizontalcards = ({ data }) => {
   return (
-    <div className="w-full h-[42vh] p-2">
+    <div className="w-full h-[42vh p-2">
       <div className="w-full flex overflow-x-auto overflow-y-hidden">
         {data.map((t, i) => {
           return (

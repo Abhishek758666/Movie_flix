@@ -1,15 +1,15 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Cards = ({ data, title }) => {
-  const navigate = useNavigate();
   console.log(title);
+
+  const mediaTypePath = data.media_type === "movie" ? "movies" : "tv shows";
+  console.log(mediaTypePath, data.media_type);
 
   return (
     <Link
-      to={`/${
-        data.media_type == "tv" ? "tv shows" : "movies" || title
-      }/details/${data.id}`}
+      to={`/${mediaTypePath}/details/${data.id}`}
       className="relative w-[20%] min-h-[24rem] hover:bg-zinc-700 bg-zinc-800 duration-300 rounded-lg p-1"
     >
       <img

@@ -17,10 +17,12 @@ export const asyncLoadMovie = (id) => async (dispatch) => {
       recommendations: recommendations.data.results,
       similar: similar.data.results,
       videos: videos.data.results.find((m) => m.type === "Trailer"),
-      watchProviders: watchProviders.data.results.US,
+      watchProviders:
+        watchProviders.data.results.US ||
+        watchProviders.data.results.NL ||
+        watchProviders.data.results.IN,
     };
     dispatch(loadMovie(ultimateDetails));
-    console.log(ultimateDetails);
   } catch (error) {
     console.log(error);
   }

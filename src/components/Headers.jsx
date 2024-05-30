@@ -36,7 +36,14 @@ const Headers = ({ data }) => {
           <BiSolidPhotoAlbum className="text-yellow-400 ml-3" />
           {data.media_type.toUpperCase()}
         </p>
-        <Link className="mt-5 p-4 bg-[#655dc3] rounded-lg">Watch Trailer</Link>
+        <Link
+          to={`/${data.media_type == "movie" ? "movies" : "tv shows"}/details/${
+            data.id
+          }/trailer`}
+          className="mt-5 p-4 bg-[#655dc3] rounded-lg"
+        >
+          Watch Trailer
+        </Link>
       </div>
     )
   );
